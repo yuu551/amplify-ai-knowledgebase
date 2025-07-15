@@ -1,0 +1,1809 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource2A172B43Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataAmpl426EE2C8": {
+   "Type": "String"
+  },
+  "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name": {
+   "Type": "String"
+  },
+  "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthauthenticatedUserRole7F628722Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthunauthenticatedUserRole86A2DA78Ref": {
+   "Type": "String"
+  },
+  "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthIdentityPoolE150EE51Ref": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "ConversationMessageChatHttpTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource2A172B43Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataAmpl426EE2C8"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "ConversationMessageChatHttp-",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     },
+     {
+      "attributeName": "conversationId",
+      "attributeType": "S"
+     },
+     {
+      "attributeName": "createdAt",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "globalSecondaryIndexes": [
+     {
+      "indexName": "gsi-ConversationChatHttp.messages",
+      "keySchema": [
+       {
+        "attributeName": "conversationId",
+        "keyType": "HASH"
+       }
+      ],
+      "projection": {
+       "projectionType": "ALL"
+      },
+      "provisionedThroughput": {
+       "Fn::If": [
+        "ShouldUsePayPerRequestBilling",
+        {
+         "Ref": "AWS::NoValue"
+        },
+        {
+         "ReadCapacityUnits": {
+          "Ref": "DynamoDBModelTableReadIOPS"
+         },
+         "WriteCapacityUnits": {
+          "Ref": "DynamoDBModelTableWriteIOPS"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "indexName": "gsi-ConversationMessage.conversationId.createdAt",
+      "keySchema": [
+       {
+        "attributeName": "conversationId",
+        "keyType": "HASH"
+       },
+       {
+        "attributeName": "createdAt",
+        "keyType": "RANGE"
+       }
+      ],
+      "projection": {
+       "projectionType": "ALL"
+      },
+      "provisionedThroughput": {
+       "Fn::If": [
+        "ShouldUsePayPerRequestBilling",
+        {
+         "Ref": "AWS::NoValue"
+        },
+        {
+         "ReadCapacityUnits": {
+          "Ref": "DynamoDBModelTableReadIOPS"
+         },
+         "WriteCapacityUnits": {
+          "Ref": "DynamoDBModelTableWriteIOPS"
+         }
+        }
+       ]
+      }
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": false
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/ConversationMessageChatHttpTable/Default/Default"
+   }
+  },
+  "ConversationMessageChatHttpIAMRole3F2E875A": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "ConversationMessageChatHttp-",
+                {
+                 "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "ConversationMessageChatHttp-",
+                {
+                 "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "ConversationMessageCeecc26-",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/ConversationMessageChatHttpIAMRole/Resource"
+   }
+  },
+  "ConversationMessageChatHttpDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "ConversationMessageChatHttpTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "ConversationMessageChatHttpTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "ConversationMessageChatHttpIAMRole3F2E875A",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "ConversationMessageChatHttpIAMRole3F2E875A"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/ConversationMessageChatHttpDataSource/Resource"
+   }
+  },
+  "QuerygetConversationMessageChatHttpauth0FunctionQuerygetConversationMessageChatHttpauth0FunctionAppSyncFunctionA5AB3E82": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetConversationMessageChatHttpauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QuerygetConversationMessageChatHttpauth0Function/QuerygetConversationMessageChatHttpauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetConversationMessageChatHttppostAuth0FunctionQuerygetConversationMessageChatHttppostAuth0FunctionAppSyncFunctionA8025B23": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetConversationMessageChatHttppostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QuerygetConversationMessageChatHttppostAuth0Function/QuerygetConversationMessageChatHttppostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetConversationMessageChatHttpDataResolverFnQueryGetConversationMessageChatHttpDataResolverFnAppSyncFunctionE9D25081": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ConversationMessageChatHttpDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetConversationMessageChatHttpDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "ConversationMessageChatHttpDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QueryGetConversationMessageChatHttpDataResolverFn/QueryGetConversationMessageChatHttpDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetConversationMessageChatHttpResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "FieldName": "getConversationMessageChatHttp",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetConversationMessageChatHttpauth0FunctionQuerygetConversationMessageChatHttpauth0FunctionAppSyncFunctionA5AB3E82",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetConversationMessageChatHttppostAuth0FunctionQuerygetConversationMessageChatHttppostAuth0FunctionAppSyncFunctionA8025B23",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetConversationMessageChatHttpDataResolverFnQueryGetConversationMessageChatHttpDataResolverFnAppSyncFunctionE9D25081",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getConversationMessageChatHttp\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ConversationMessageChatHttpTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthauthenticatedUserRole7F628722Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthunauthenticatedUserRole86A2DA78Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthIdentityPoolE150EE51Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/queryGetConversationMessageChatHttpResolver"
+   }
+  },
+  "QuerylistConversationMessageChatHttpsinit0FunctionQuerylistConversationMessageChatHttpsinit0FunctionAppSyncFunction04BB429E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "CodeS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0edda000d51d2dad71ce25906e6d3dbe13a02e14cdb47a73548d3c7dfb9273a2.js"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistConversationMessageChatHttpsinit0Function",
+    "Runtime": {
+     "Name": "APPSYNC_JS",
+     "RuntimeVersion": "1.0.0"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QuerylistConversationMessageChatHttpsinit0Function/QuerylistConversationMessageChatHttpsinit0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistConversationMessageChatHttpsauth0FunctionQuerylistConversationMessageChatHttpsauth0FunctionAppSyncFunction30C1557E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistConversationMessageChatHttpsauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6b25c9b572c67e0f7ad41cb8019a90825f3db4b02a0a15b837c7a82dcb302060.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QuerylistConversationMessageChatHttpsauth0Function/QuerylistConversationMessageChatHttpsauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistConversationMessageChatHttpspostAuth0FunctionQuerylistConversationMessageChatHttpspostAuth0FunctionAppSyncFunctionF4436C52": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistConversationMessageChatHttpspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QuerylistConversationMessageChatHttpspostAuth0Function/QuerylistConversationMessageChatHttpspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistConversationMessageChatHttpspostDataLoad0FunctionQuerylistConversationMessageChatHttpspostDataLoad0FunctionAppSyncFunction408951B2": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "CodeS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/603127525b6ec091768fc8f3e83354d961e7c3f7931c9e5502ddcfae29042d6e.js"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistConversationMessageChatHttpspostDataLoad0Function",
+    "Runtime": {
+     "Name": "APPSYNC_JS",
+     "RuntimeVersion": "1.0.0"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QuerylistConversationMessageChatHttpspostDataLoad0Function/QuerylistConversationMessageChatHttpspostDataLoad0Function.AppSyncFunction"
+   }
+  },
+  "QueryListConversationMessageChatHttpsDataResolverFnQueryListConversationMessageChatHttpsDataResolverFnAppSyncFunction140BA152": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ConversationMessageChatHttpDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListConversationMessageChatHttpsDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "ConversationMessageChatHttpDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/QueryListConversationMessageChatHttpsDataResolverFn/QueryListConversationMessageChatHttpsDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListConversationMessageChatHttpResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "FieldName": "listConversationMessageChatHttps",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistConversationMessageChatHttpsinit0FunctionQuerylistConversationMessageChatHttpsinit0FunctionAppSyncFunction04BB429E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistConversationMessageChatHttpsauth0FunctionQuerylistConversationMessageChatHttpsauth0FunctionAppSyncFunction30C1557E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistConversationMessageChatHttpspostAuth0FunctionQuerylistConversationMessageChatHttpspostAuth0FunctionAppSyncFunctionF4436C52",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListConversationMessageChatHttpsDataResolverFnQueryListConversationMessageChatHttpsDataResolverFnAppSyncFunction140BA152",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistConversationMessageChatHttpspostDataLoad0FunctionQuerylistConversationMessageChatHttpspostDataLoad0FunctionAppSyncFunction408951B2",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listConversationMessageChatHttps\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ConversationMessageChatHttpTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthauthenticatedUserRole7F628722Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthunauthenticatedUserRole86A2DA78Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthIdentityPoolE150EE51Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/queryListConversationMessageChatHttpsResolver"
+   }
+  },
+  "MutationcreateConversationMessageChatHttpinit0FunctionMutationcreateConversationMessageChatHttpinit0FunctionAppSyncFunctionEADD7B85": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateConversationMessageChatHttpinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/MutationcreateConversationMessageChatHttpinit0Function/MutationcreateConversationMessageChatHttpinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateConversationMessageChatHttpauth0FunctionMutationcreateConversationMessageChatHttpauth0FunctionAppSyncFunctionE029913C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateConversationMessageChatHttpauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/307ca1fc1cffd6c474c1b2d94cec81d0629d0c567f91a6c304ee82e6c91802c2.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/MutationcreateConversationMessageChatHttpauth0Function/MutationcreateConversationMessageChatHttpauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateConversationMessageChatHttppostAuth0FunctionMutationcreateConversationMessageChatHttppostAuth0FunctionAppSyncFunction4CFEBC8C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateConversationMessageChatHttppostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/MutationcreateConversationMessageChatHttppostAuth0Function/MutationcreateConversationMessageChatHttppostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateConversationMessageChatHttpDataResolverFnMutationCreateConversationMessageChatHttpDataResolverFnAppSyncFunction869E15A1": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ConversationMessageChatHttpDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateConversationMessageChatHttpDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/b201918216ccd1e358fb68e3cb2b01b9679616958d63cd6b7d775bdea4f27e1e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "ConversationMessageChatHttpDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/MutationCreateConversationMessageChatHttpDataResolverFn/MutationCreateConversationMessageChatHttpDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateConversationMessageChatHttpResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "FieldName": "createConversationMessageChatHttp",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateConversationMessageChatHttpinit0FunctionMutationcreateConversationMessageChatHttpinit0FunctionAppSyncFunctionEADD7B85",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateConversationMessageChatHttpauth0FunctionMutationcreateConversationMessageChatHttpauth0FunctionAppSyncFunctionE029913C",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateConversationMessageChatHttppostAuth0FunctionMutationcreateConversationMessageChatHttppostAuth0FunctionAppSyncFunction4CFEBC8C",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateConversationMessageChatHttpDataResolverFnMutationCreateConversationMessageChatHttpDataResolverFnAppSyncFunction869E15A1",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createConversationMessageChatHttp\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ConversationMessageChatHttpTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthauthenticatedUserRole7F628722Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthunauthenticatedUserRole86A2DA78Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthIdentityPoolE150EE51Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/mutationCreateConversationMessageChatHttpResolver"
+   }
+  },
+  "MutationdeleteConversationMessageChatHttpauth0FunctionMutationdeleteConversationMessageChatHttpauth0FunctionAppSyncFunction637DAE61": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ConversationMessageChatHttpDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteConversationMessageChatHttpauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/867fb7d7eb8e4127b6d0136b82c5c3f74a52eb410297086859986f8e7e4b02aa.vtl"
+    }
+   },
+   "DependsOn": [
+    "ConversationMessageChatHttpDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/MutationdeleteConversationMessageChatHttpauth0Function/MutationdeleteConversationMessageChatHttpauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteConversationMessageChatHttppostAuth0FunctionMutationdeleteConversationMessageChatHttppostAuth0FunctionAppSyncFunction4EB19E59": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteConversationMessageChatHttppostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/MutationdeleteConversationMessageChatHttppostAuth0Function/MutationdeleteConversationMessageChatHttppostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteConversationMessageChatHttpDataResolverFnMutationDeleteConversationMessageChatHttpDataResolverFnAppSyncFunction1D2B9A8D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "ConversationMessageChatHttpDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteConversationMessageChatHttpDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "ConversationMessageChatHttpDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/MutationDeleteConversationMessageChatHttpDataResolverFn/MutationDeleteConversationMessageChatHttpDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteConversationMessageChatHttpResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "FieldName": "deleteConversationMessageChatHttp",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteConversationMessageChatHttpauth0FunctionMutationdeleteConversationMessageChatHttpauth0FunctionAppSyncFunction637DAE61",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteConversationMessageChatHttppostAuth0FunctionMutationdeleteConversationMessageChatHttppostAuth0FunctionAppSyncFunction4EB19E59",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteConversationMessageChatHttpDataResolverFnMutationDeleteConversationMessageChatHttpDataResolverFnAppSyncFunction1D2B9A8D",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteConversationMessageChatHttp\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "ConversationMessageChatHttpTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthauthenticatedUserRole7F628722Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthunauthenticatedUserRole86A2DA78Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthIdentityPoolE150EE51Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/mutationDeleteConversationMessageChatHttpResolver"
+   }
+  },
+  "SubscriptiononCreateConversationMessageChatHttpauth0FunctionSubscriptiononCreateConversationMessageChatHttpauth0FunctionAppSyncFunction95C7508B": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateConversationMessageChatHttpauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3b6d810ef43cdbd93ef462c40b0df0328b89e04f1473a4f82f1178da1f1d5aa0.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/SubscriptiononCreateConversationMessageChatHttpauth0Function/SubscriptiononCreateConversationMessageChatHttpauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateConversationMessageChatHttppostAuth0FunctionSubscriptiononCreateConversationMessageChatHttppostAuth0FunctionAppSyncFunctionDB6E2CD5": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateConversationMessageChatHttppostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/SubscriptiononCreateConversationMessageChatHttppostAuth0Function/SubscriptiononCreateConversationMessageChatHttppostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateConversationMessageChatHttpDataResolverFnSubscriptionOnCreateConversationMessageChatHttpDataResolverFnAppSyncFunction67D48A4E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateConversationMessageChatHttpDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/SubscriptionOnCreateConversationMessageChatHttpDataResolverFn/SubscriptionOnCreateConversationMessageChatHttpDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateConversationMessageChatHttpResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "FieldName": "onCreateConversationMessageChatHttp",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateConversationMessageChatHttpauth0FunctionSubscriptiononCreateConversationMessageChatHttpauth0FunctionAppSyncFunction95C7508B",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateConversationMessageChatHttppostAuth0FunctionSubscriptiononCreateConversationMessageChatHttppostAuth0FunctionAppSyncFunctionDB6E2CD5",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateConversationMessageChatHttpDataResolverFnSubscriptionOnCreateConversationMessageChatHttpDataResolverFnAppSyncFunction67D48A4E",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateConversationMessageChatHttp\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthauthenticatedUserRole7F628722Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthunauthenticatedUserRole86A2DA78Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthIdentityPoolE150EE51Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/subscriptionOnCreateConversationMessageChatHttpResolver"
+   }
+  },
+  "ConversationMessageChatHttpOwnerDataResolverFnConversationMessageChatHttpOwnerDataResolverFnAppSyncFunction4C0CA97E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPINONEDSCB266FB5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "ConversationMessageChatHttpOwnerDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/041534e5fd916595f752318f161512d7c7f83b9f2cf32d0f0be381c12253ff68.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/064303962e481067b44300212516363b99aaee539b6bafaf756fdd83ff0b60f0.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/ConversationMessageChatHttpOwnerDataResolverFn/ConversationMessageChatHttpOwnerDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ConversationMessageChatHttpownerResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "FieldName": "owner",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "ConversationMessageChatHttpOwnerDataResolverFnConversationMessageChatHttpOwnerDataResolverFnAppSyncFunction4C0CA97E",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"ConversationMessageChatHttp\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"owner\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"authRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthauthenticatedUserRole7F628722Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"unauthRole\", \"arn:",
+       {
+        "Ref": "AWS::Partition"
+       },
+       ":sts::",
+       {
+        "Ref": "AWS::AccountId"
+       },
+       ":assumed-role/",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthunauthenticatedUserRole86A2DA78Ref"
+       },
+       "/CognitoIdentityCredentials\"))\n$util.qr($ctx.stash.put(\"identityPoolId\", \"",
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthNestedStackauthNestedStackResourceDE40F565Outputsamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7eauthamplifyAuthIdentityPoolE150EE51Ref"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "ConversationMessageChatHttp"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/conversationMessageChatHttpOwnerResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WOwW6DMAyGn6X31GN02n0F7bhNsHtlEoNSwEGx06pCvPsEnTrt9PuTP9l/Dnn2AtkOr7K3rt8PvoH5g0TJ1Yq2N0XLXxhxJKW4QhHYefWBTUUSUrRkiiQaxj9s+THjVU6zuzGOwTXwjc1ARxQyHkeYqzDc7TDQYnCa5MYW5nLTy6ZExfpx8j+9J7ZriSJw67sUcWv0+3m4UFyMHE4oQirwtoaRAxyT7UnXAsvqfiadkpptXSt2nrvFcHAEZ3m65Bk8v0K2O4v3+5hY/UhQ3fMHRPON2jYBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ConversationMessageChatHttp/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttConversationMessageChatHttpTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "ConversationMessageChatHttpTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "GetAtt:ConversationMessageChatHttpTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttConversationMessageChatHttpTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "ConversationMessageChatHttp-",
+      {
+       "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+       },
+       "GetAtt:ConversationMessageChatHttpTable:Name"
+      ]
+     ]
+    }
+   }
+  },
+  "amplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataConversationMessageChatHttpConversationMessageChatHttpDataSourceF3FE9D4DName": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ConversationMessageChatHttpDataSource",
+     "Name"
+    ]
+   }
+  },
+  "amplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataConversationMessageChatHttpConversationMessageChatHttpTable97ACB5ABTableArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ConversationMessageChatHttpTable",
+     "TableArn"
+    ]
+   }
+  }
+ }
+}

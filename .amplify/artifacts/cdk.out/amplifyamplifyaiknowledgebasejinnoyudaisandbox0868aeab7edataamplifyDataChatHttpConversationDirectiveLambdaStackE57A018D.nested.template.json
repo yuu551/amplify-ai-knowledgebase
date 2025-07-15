@@ -1,0 +1,624 @@
+{
+ "Resources": {
+  "ChatHttpDefaultConversationHandlerconversationHandlerFunctionLogGroup98A1E786": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "DataProtectionPolicy": {
+     "Name": "data-protection-policy-cdk",
+     "Description": "cdk generated data protection policy",
+     "Version": "2021-06-01",
+     "Statement": [
+      {
+       "Sid": "audit-statement-cdk",
+       "DataIdentifier": [
+        "JWTToken"
+       ],
+       "Operation": {
+        "Audit": {
+         "FindingsDestination": {}
+        }
+       }
+      },
+      {
+       "Sid": "redact-statement-cdk",
+       "DataIdentifier": [
+        "JWTToken"
+       ],
+       "Operation": {
+        "Deidentify": {
+         "MaskConfig": {}
+        }
+       }
+      }
+     ],
+     "Configuration": {
+      "CustomDataIdentifier": [
+       {
+        "Name": "JWTToken",
+        "Regex": "ey[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*"
+       }
+      ]
+     }
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "ChatHttpDefaultConversationHandler"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/ChatHttpDefaultConversationHandler/conversationHandlerFunctionLogGroup/Resource"
+   }
+  },
+  "ChatHttpDefaultConversationHandlerconversationHandlerFunctionServiceRole3765A8B5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "ChatHttpDefaultConversationHandler"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/ChatHttpDefaultConversationHandler/conversationHandlerFunction/ServiceRole/Resource"
+   }
+  },
+  "ChatHttpDefaultConversationHandlerconversationHandlerFunctionServiceRoleDefaultPolicy99BD42B5": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:aws:bedrock:",
+          {
+           "Ref": "AWS::Region"
+          },
+          "::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ChatHttpDefaultConversationHandlerconversationHandlerFunctionServiceRoleDefaultPolicy99BD42B5",
+    "Roles": [
+     {
+      "Ref": "ChatHttpDefaultConversationHandlerconversationHandlerFunctionServiceRole3765A8B5"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/ChatHttpDefaultConversationHandler/conversationHandlerFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ChatHttpDefaultConversationHandlerconversationHandlerFunctionB50D55B6": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "3028eeb384962f0fec07d89fc7ec50dcba62e2a2962893fa7f54fac94bae664c.zip"
+    },
+    "Handler": "index.handler",
+    "LoggingConfig": {
+     "LogFormat": "JSON",
+     "LogGroup": {
+      "Ref": "ChatHttpDefaultConversationHandlerconversationHandlerFunctionLogGroup98A1E786"
+     }
+    },
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "ChatHttpDefaultConversationHandlerconversationHandlerFunctionServiceRole3765A8B5",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "ChatHttpDefaultConversationHandler"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ],
+    "Timeout": 60
+   },
+   "DependsOn": [
+    "ChatHttpDefaultConversationHandlerconversationHandlerFunctionServiceRoleDefaultPolicy99BD42B5",
+    "ChatHttpDefaultConversationHandlerconversationHandlerFunctionServiceRole3765A8B5"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/ChatHttpDefaultConversationHandler/conversationHandlerFunction/Resource",
+    "aws:asset:path": "asset.3028eeb384962f0fec07d89fc7ec50dcba62e2a2962893fa7f54fac94bae664c",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ChatHttpDefaultConversationHandlerLambdaDataSourceServiceRoleC7E7342C": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/ChatHttpDefaultConversationHandlerLambdaDataSource/ServiceRole/Resource"
+   }
+  },
+  "ChatHttpDefaultConversationHandlerLambdaDataSourceServiceRoleDefaultPolicy8D1BBFFE": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "ChatHttpDefaultConversationHandlerconversationHandlerFunctionB50D55B6",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "ChatHttpDefaultConversationHandlerconversationHandlerFunctionB50D55B6",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ChatHttpDefaultConversationHandlerLambdaDataSourceServiceRoleDefaultPolicy8D1BBFFE",
+    "Roles": [
+     {
+      "Ref": "ChatHttpDefaultConversationHandlerLambdaDataSourceServiceRoleC7E7342C"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/ChatHttpDefaultConversationHandlerLambdaDataSource/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ChatHttpDefaultConversationHandlerLambdaDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId"
+    },
+    "LambdaConfig": {
+     "LambdaFunctionArn": {
+      "Fn::GetAtt": [
+       "ChatHttpDefaultConversationHandlerconversationHandlerFunctionB50D55B6",
+       "Arn"
+      ]
+     }
+    },
+    "Name": "ChatHttpDefaultConversationHandlerLambdaDataSource",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "ChatHttpDefaultConversationHandlerLambdaDataSourceServiceRoleC7E7342C",
+      "Arn"
+     ]
+    },
+    "Type": "AWS_LAMBDA"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/ChatHttpDefaultConversationHandlerLambdaDataSource/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/0WNwarCMBBFv8X9dKxV3D8V3YhI+wEypmOJTZPSSRQJ+Xdpi7zVOXcu3CmwyDeYL+gtmarbzOg7xguL57rypFqgt9yicY1gPLvmNLjQw/5hf57AUHevCeMxWOW1s2P78wSaOoylMzyeJ16d0eozxtkSyPpGIuwF/0aArHEXVMt+R8JAfS8fqzCep0cH8lS5MKhp8T+lBCXLXEwzladG2yaBdTXjU5avIsfVFvPFU7TOhmC97hjLmV+PUmjqCAEAAA=="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-amplifyaiknowledgebase-jinnoyudai-sandbox-0868aeab7e/data/amplifyData/ChatHttpConversationDirectiveLambdaStack/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Conditions": {
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Parameters": {
+  "referencetoamplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataGraphQLAPIB0B2DB2BApiId": {
+   "Type": "String"
+  }
+ },
+ "Outputs": {
+  "amplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataChatHttpConversationDirectiveLambdaStackChatHttpDefaultConversationHandlerLambdaDataSourceA46651FAName": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ChatHttpDefaultConversationHandlerLambdaDataSource",
+     "Name"
+    ]
+   }
+  },
+  "amplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataChatHttpConversationDirectiveLambdaStackChatHttpDefaultConversationHandlerconversationHandlerFunctionAD022794Arn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "ChatHttpDefaultConversationHandlerconversationHandlerFunctionB50D55B6",
+     "Arn"
+    ]
+   }
+  },
+  "amplifyamplifyaiknowledgebasejinnoyudaisandbox0868aeab7edataamplifyDataChatHttpConversationDirectiveLambdaStackChatHttpDefaultConversationHandlerconversationHandlerFunctionAD022794Ref": {
+   "Value": {
+    "Ref": "ChatHttpDefaultConversationHandlerconversationHandlerFunctionB50D55B6"
+   }
+  }
+ }
+}

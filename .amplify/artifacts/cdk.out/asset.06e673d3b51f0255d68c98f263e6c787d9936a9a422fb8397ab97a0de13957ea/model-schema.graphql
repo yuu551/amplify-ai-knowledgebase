@@ -1,0 +1,16 @@
+type Todo @model @auth(rules: [{allow: owner, ownerField: "owner"}])
+{
+  content: String
+  completed: Boolean @default(value: "false")
+}
+
+type QueryKnowledgeBaseReturnType @aws_cognito_user_pools
+{
+  response: String
+  sourceDocuments: [String]
+  error: String
+}
+
+type Query {
+  queryKnowledgeBase(query: String!): QueryKnowledgeBaseReturnType @function(name: "FnQueryKnowledgeBase") @auth(rules: [{allow: private}])
+}

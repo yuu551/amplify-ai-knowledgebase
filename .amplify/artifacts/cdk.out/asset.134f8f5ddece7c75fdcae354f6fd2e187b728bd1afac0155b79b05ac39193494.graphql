@@ -1,0 +1,594 @@
+type Todo @aws_iam @aws_cognito_user_pools {
+  content: String
+  completed: Boolean
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type QueryKnowledgeBaseReturnType @aws_cognito_user_pools @aws_iam {
+  response: String
+  sourceDocuments: [String]
+  error: String
+}
+
+type Mutation @aws_iam {
+  createAssistantResponseKnowledgeBaseChat(input: CreateConversationMessageKnowledgeBaseChatAssistantInput!): ConversationMessageKnowledgeBaseChat @aws_cognito_user_pools
+  createAssistantResponseStreamKnowledgeBaseChat(input: CreateConversationMessageKnowledgeBaseChatAssistantStreamingInput!): AmplifyAIConversationMessageStreamPart @aws_cognito_user_pools
+  knowledgeBaseChat(conversationId: ID!, content: [AmplifyAIContentBlockInput], aiContext: AWSJSON, toolConfiguration: AmplifyAIToolConfigurationInput): AmplifyAIConversationMessage @aws_cognito_user_pools @aws_iam
+  createTodo(input: CreateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_iam @aws_cognito_user_pools
+  updateTodo(input: UpdateTodoInput!, condition: ModelTodoConditionInput): Todo @aws_iam @aws_cognito_user_pools
+  deleteTodo(input: DeleteTodoInput!, condition: ModelTodoConditionInput): Todo @aws_iam @aws_cognito_user_pools
+  createConversationKnowledgeBaseChat(input: CreateConversationKnowledgeBaseChatInput!, condition: ModelConversationKnowledgeBaseChatConditionInput): ConversationKnowledgeBaseChat @aws_iam @aws_cognito_user_pools
+  updateConversationKnowledgeBaseChat(input: UpdateConversationKnowledgeBaseChatInput!, condition: ModelConversationKnowledgeBaseChatConditionInput): ConversationKnowledgeBaseChat @aws_iam @aws_cognito_user_pools
+  deleteConversationKnowledgeBaseChat(input: DeleteConversationKnowledgeBaseChatInput!, condition: ModelConversationKnowledgeBaseChatConditionInput): ConversationKnowledgeBaseChat @aws_iam @aws_cognito_user_pools
+  createConversationMessageKnowledgeBaseChat(input: CreateConversationMessageKnowledgeBaseChatInput!, condition: ModelConversationMessageKnowledgeBaseChatConditionInput): ConversationMessageKnowledgeBaseChat @aws_iam @aws_cognito_user_pools
+  deleteConversationMessageKnowledgeBaseChat(input: DeleteConversationMessageKnowledgeBaseChatInput!, condition: ModelConversationMessageKnowledgeBaseChatConditionInput): ConversationMessageKnowledgeBaseChat @aws_iam @aws_cognito_user_pools
+}
+
+type Query @aws_iam {
+  queryKnowledgeBase(query: String!): QueryKnowledgeBaseReturnType @aws_cognito_user_pools @aws_iam
+  getTodo(id: ID!): Todo @aws_iam @aws_cognito_user_pools
+  listTodos(filter: ModelTodoFilterInput, limit: Int, nextToken: String): ModelTodoConnection @aws_iam @aws_cognito_user_pools
+  getConversationKnowledgeBaseChat(id: ID!): ConversationKnowledgeBaseChat @aws_iam @aws_cognito_user_pools
+  listConversationKnowledgeBaseChats(filter: ModelConversationKnowledgeBaseChatFilterInput, limit: Int, nextToken: String): ModelConversationKnowledgeBaseChatConnection @aws_iam @aws_cognito_user_pools
+  getConversationMessageKnowledgeBaseChat(id: ID!): ConversationMessageKnowledgeBaseChat @aws_iam @aws_cognito_user_pools
+  listConversationMessageKnowledgeBaseChats(filter: ModelConversationMessageKnowledgeBaseChatFilterInput, limit: Int, nextToken: String): ModelConversationMessageKnowledgeBaseChatConnection @aws_iam @aws_cognito_user_pools
+}
+
+enum AmplifyAIConversationParticipantRole {
+  user
+  assistant
+}
+
+interface AmplifyAIConversationMessage {
+  id: ID!
+  conversationId: ID!
+  associatedUserMessageId: ID
+  role: AmplifyAIConversationParticipantRole
+  content: [AmplifyAIContentBlock]
+  aiContext: AWSJSON
+  toolConfiguration: AmplifyAIToolConfiguration
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  owner: String
+}
+
+input AmplifyAIDocumentBlockSourceInput {
+  bytes: String
+}
+
+input AmplifyAIDocumentBlockInput {
+  format: String!
+  name: String!
+  source: AmplifyAIDocumentBlockSourceInput!
+}
+
+input AmplifyAIImageBlockSourceInput {
+  bytes: String
+}
+
+input AmplifyAIImageBlockInput {
+  format: String!
+  source: AmplifyAIImageBlockSourceInput!
+}
+
+input AmplifyAIToolUseBlockInput {
+  toolUseId: String!
+  name: String!
+  input: AWSJSON!
+}
+
+input AmplifyAIToolResultContentBlockInput {
+  document: AmplifyAIDocumentBlockInput
+  image: AmplifyAIImageBlockInput
+  json: AWSJSON
+  text: String
+}
+
+input AmplifyAIToolResultBlockInput {
+  content: [AmplifyAIToolResultContentBlockInput!]!
+  toolUseId: String!
+  status: String
+}
+
+type AmplifyAIDocumentBlockSource @aws_iam @aws_cognito_user_pools {
+  bytes: String
+}
+
+type AmplifyAIDocumentBlock @aws_iam @aws_cognito_user_pools {
+  format: String!
+  name: String!
+  source: AmplifyAIDocumentBlockSource!
+}
+
+type AmplifyAIImageBlock @aws_iam @aws_cognito_user_pools {
+  format: String!
+  source: AmplifyAIImageBlockSource!
+}
+
+type AmplifyAIImageBlockSource @aws_iam @aws_cognito_user_pools {
+  bytes: String
+}
+
+type AmplifyAIToolUseBlock @aws_iam @aws_cognito_user_pools {
+  toolUseId: String!
+  name: String!
+  input: AWSJSON!
+}
+
+type AmplifyAIToolResultContentBlock @aws_iam @aws_cognito_user_pools {
+  document: AmplifyAIDocumentBlock
+  image: AmplifyAIImageBlock
+  json: AWSJSON
+  text: String
+}
+
+type AmplifyAIToolResultBlock @aws_iam @aws_cognito_user_pools {
+  content: [AmplifyAIToolResultContentBlock!]!
+  toolUseId: String!
+  status: String
+}
+
+type AmplifyAIContentBlockText @aws_iam {
+  text: String
+}
+
+type AmplifyAIContentBlockImage @aws_iam {
+  image: AmplifyAIImageBlock
+}
+
+type AmplifyAIContentBlockDocument @aws_iam {
+  document: AmplifyAIDocumentBlock
+}
+
+type AmplifyAIContentBlockToolUse @aws_iam {
+  toolUse: AmplifyAIToolUseBlock
+}
+
+type AmplifyAIContentBlockToolResult @aws_iam {
+  toolResult: AmplifyAIToolResultBlock
+}
+
+input AmplifyAIContentBlockInput {
+  text: String
+  document: AmplifyAIDocumentBlockInput
+  image: AmplifyAIImageBlockInput
+  toolResult: AmplifyAIToolResultBlockInput
+  toolUse: AmplifyAIToolUseBlockInput
+}
+
+type AmplifyAIContentBlock @aws_iam @aws_cognito_user_pools {
+  text: String
+  document: AmplifyAIDocumentBlock
+  image: AmplifyAIImageBlock
+  toolResult: AmplifyAIToolResultBlock
+  toolUse: AmplifyAIToolUseBlock
+}
+
+input AmplifyAIToolConfigurationInput {
+  tools: [AmplifyAIToolInput]
+}
+
+input AmplifyAIToolInput {
+  toolSpec: AmplifyAIToolSpecificationInput
+}
+
+input AmplifyAIToolSpecificationInput {
+  name: String!
+  description: String
+  inputSchema: AmplifyAIToolInputSchemaInput!
+}
+
+input AmplifyAIToolInputSchemaInput {
+  json: AWSJSON
+}
+
+type AmplifyAIToolConfiguration @aws_iam @aws_cognito_user_pools {
+  tools: [AmplifyAITool]
+}
+
+type AmplifyAITool @aws_iam @aws_cognito_user_pools {
+  toolSpec: AmplifyAIToolSpecification
+}
+
+type AmplifyAIToolSpecification @aws_iam @aws_cognito_user_pools {
+  name: String!
+  description: String
+  inputSchema: AmplifyAIToolInputSchema!
+}
+
+type AmplifyAIToolInputSchema @aws_iam @aws_cognito_user_pools {
+  json: AWSJSON
+}
+
+type AmplifyAIConversationMessageStreamPart @aws_cognito_user_pools @aws_iam {
+  id: ID!
+  owner: String
+  conversationId: ID!
+  associatedUserMessageId: ID!
+  contentBlockIndex: Int
+  contentBlockText: String
+  contentBlockDeltaIndex: Int
+  contentBlockToolUse: AmplifyAIToolUseBlock
+  contentBlockDoneAtIndex: Int
+  stopReason: String
+  errors: [AmplifyAIConversationTurnError]
+  p: String
+}
+
+type AmplifyAIConversationTurnError @aws_cognito_user_pools @aws_iam {
+  message: String!
+  errorType: String!
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input CreateConversationMessageKnowledgeBaseChatAssistantInput {
+  conversationId: ID
+  content: [AmplifyAIContentBlockInput]
+  associatedUserMessageId: ID
+}
+
+input CreateConversationMessageKnowledgeBaseChatAssistantStreamingInput {
+  conversationId: ID!
+  associatedUserMessageId: ID!
+  contentBlockIndex: Int
+  contentBlockText: String
+  contentBlockDeltaIndex: Int
+  contentBlockToolUse: AWSJSON
+  contentBlockDoneAtIndex: Int
+  stopReason: String
+  accumulatedTurnContent: [AmplifyAIContentBlockInput]
+  errors: [AmplifyAIConversationTurnErrorInput]
+  p: String
+}
+
+type Subscription {
+  onCreateAssistantResponseKnowledgeBaseChat(conversationId: ID): AmplifyAIConversationMessageStreamPart @aws_subscribe(mutations: ["createAssistantResponseStreamKnowledgeBaseChat"]) @aws_cognito_user_pools
+  onCreateTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["createTodo"]) @aws_iam @aws_cognito_user_pools
+  onUpdateTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["updateTodo"]) @aws_iam @aws_cognito_user_pools
+  onDeleteTodo(filter: ModelSubscriptionTodoFilterInput, owner: String): Todo @aws_subscribe(mutations: ["deleteTodo"]) @aws_iam @aws_cognito_user_pools
+  onCreateConversationMessageKnowledgeBaseChat(filter: ModelSubscriptionConversationMessageKnowledgeBaseChatFilterInput, owner: String): ConversationMessageKnowledgeBaseChat @aws_subscribe(mutations: ["createConversationMessageKnowledgeBaseChat"]) @aws_iam @aws_cognito_user_pools
+}
+
+type ConversationKnowledgeBaseChat @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  name: String
+  metadata: AWSJSON
+  messages(filter: ModelConversationMessageKnowledgeBaseChatFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelConversationMessageKnowledgeBaseChatConnection
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type ConversationMessageKnowledgeBaseChat implements AmplifyAIConversationMessage @aws_iam @aws_cognito_user_pools {
+  id: ID!
+  conversationId: ID!
+  conversation: ConversationKnowledgeBaseChat
+  role: AmplifyAIConversationParticipantRole
+  content: [AmplifyAIContentBlock]
+  aiContext: AWSJSON
+  toolConfiguration: AmplifyAIToolConfiguration
+  associatedUserMessageId: ID
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelTodoConnection @aws_iam @aws_cognito_user_pools {
+  items: [Todo]!
+  nextToken: String
+}
+
+input ModelTodoFilterInput {
+  content: ModelStringInput
+  completed: ModelBooleanInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelTodoFilterInput]
+  or: [ModelTodoFilterInput]
+  not: ModelTodoFilterInput
+  owner: ModelStringInput
+}
+
+input ModelTodoConditionInput {
+  content: ModelStringInput
+  completed: ModelBooleanInput
+  and: [ModelTodoConditionInput]
+  or: [ModelTodoConditionInput]
+  not: ModelTodoConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateTodoInput {
+  content: String
+  completed: Boolean
+  id: ID
+}
+
+input UpdateTodoInput {
+  content: String
+  completed: Boolean
+  id: ID!
+}
+
+input DeleteTodoInput {
+  id: ID!
+}
+
+input ModelSubscriptionTodoFilterInput {
+  content: ModelSubscriptionStringInput
+  completed: ModelSubscriptionBooleanInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionTodoFilterInput]
+  or: [ModelSubscriptionTodoFilterInput]
+  owner: ModelStringInput
+}
+
+type ModelConversationKnowledgeBaseChatConnection @aws_iam @aws_cognito_user_pools {
+  items: [ConversationKnowledgeBaseChat]!
+  nextToken: String
+}
+
+input ModelConversationKnowledgeBaseChatFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  metadata: ModelStringInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelConversationKnowledgeBaseChatFilterInput]
+  or: [ModelConversationKnowledgeBaseChatFilterInput]
+  not: ModelConversationKnowledgeBaseChatFilterInput
+  owner: ModelStringInput
+}
+
+input ModelConversationKnowledgeBaseChatConditionInput {
+  name: ModelStringInput
+  metadata: ModelStringInput
+  and: [ModelConversationKnowledgeBaseChatConditionInput]
+  or: [ModelConversationKnowledgeBaseChatConditionInput]
+  not: ModelConversationKnowledgeBaseChatConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateConversationKnowledgeBaseChatInput {
+  id: ID
+  name: String
+  metadata: AWSJSON
+}
+
+input UpdateConversationKnowledgeBaseChatInput {
+  id: ID!
+  name: String
+  metadata: AWSJSON
+}
+
+input DeleteConversationKnowledgeBaseChatInput {
+  id: ID!
+}
+
+type ModelConversationMessageKnowledgeBaseChatConnection @aws_iam @aws_cognito_user_pools {
+  items: [ConversationMessageKnowledgeBaseChat]!
+  nextToken: String
+}
+
+input ModelAmplifyAIConversationParticipantRoleInput {
+  eq: AmplifyAIConversationParticipantRole
+  ne: AmplifyAIConversationParticipantRole
+}
+
+input ModelConversationMessageKnowledgeBaseChatFilterInput {
+  id: ModelIDInput
+  conversationId: ModelIDInput
+  role: ModelAmplifyAIConversationParticipantRoleInput
+  aiContext: ModelStringInput
+  associatedUserMessageId: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelConversationMessageKnowledgeBaseChatFilterInput]
+  or: [ModelConversationMessageKnowledgeBaseChatFilterInput]
+  not: ModelConversationMessageKnowledgeBaseChatFilterInput
+  owner: ModelStringInput
+}
+
+input ModelConversationMessageKnowledgeBaseChatConditionInput {
+  conversationId: ModelIDInput
+  role: ModelAmplifyAIConversationParticipantRoleInput
+  aiContext: ModelStringInput
+  associatedUserMessageId: ModelIDInput
+  and: [ModelConversationMessageKnowledgeBaseChatConditionInput]
+  or: [ModelConversationMessageKnowledgeBaseChatConditionInput]
+  not: ModelConversationMessageKnowledgeBaseChatConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  owner: ModelStringInput
+}
+
+input CreateConversationMessageKnowledgeBaseChatInput {
+  id: ID
+  conversationId: ID!
+  role: AmplifyAIConversationParticipantRole
+  content: [AmplifyAIContentBlockInput]
+  aiContext: AWSJSON
+  toolConfiguration: AmplifyAIToolConfigurationInput
+  associatedUserMessageId: ID
+}
+
+input DeleteConversationMessageKnowledgeBaseChatInput {
+  id: ID!
+}
+
+input ModelSubscriptionConversationMessageKnowledgeBaseChatFilterInput {
+  id: ModelSubscriptionIDInput
+  conversationId: ModelSubscriptionIDInput
+  role: ModelSubscriptionStringInput
+  aiContext: ModelSubscriptionStringInput
+  associatedUserMessageId: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionConversationMessageKnowledgeBaseChatFilterInput]
+  or: [ModelSubscriptionConversationMessageKnowledgeBaseChatFilterInput]
+  owner: ModelStringInput
+}
