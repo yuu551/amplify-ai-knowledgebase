@@ -5,7 +5,7 @@ AWS AmplifyのAI Kitを使用したKnowledge Base統合アプリケーション�
 ## 🚀 機能
 
 - **Lambda関数版**: Lambda関数を使用してBedrock Knowledge Baseに接続
-- **HTTPデータソース版**: AppSyncのHTTPデータソースを使用して直接Bedrock APIに接続
+- **AppSync連携版**: AppSyncのHTTPデータソースを使用して直接Bedrock APIに接続
 - **AIConversation**: AmplifyのAI KitのデフォルトUIコンポーネントを使用
 - **認証**: Cognito User Poolsによるユーザー認証
 - **リアルタイム**: GraphQLによるリアルタイム通信
@@ -17,7 +17,7 @@ AWS AmplifyのAI Kitを使用したKnowledge Base統合アプリケーション�
 React App → AppSync GraphQL → Lambda Function → Bedrock Knowledge Base
 ```
 
-### HTTPデータソース版
+### AppSync連携版
 ```
 React App → AppSync GraphQL → HTTP DataSource → Bedrock Knowledge Base
 ```
@@ -98,13 +98,13 @@ amplify-ai-knowledgebase/
 1. アプリケーションにサインアップ/サインイン
 2. タブを切り替えて2つの実装を比較
    - **Lambda関数版**: 従来のサーバーレス関数アプローチ
-   - **HTTPデータソース版**: 直接API統合アプローチ
+   - **AppSync連携版**: 直接API統合アプローチ
 3. 質問を入力してKnowledge Baseから回答を取得
 
 ## 📊 2つの実装方式の比較
 
-| 項目 | Lambda関数版 | HTTPデータソース版 |
-|------|-------------|-------------------|
+| 項目 | Lambda関数版 | AppSync連携版 |
+|------|-------------|---------------|
 | **実装複雑度** | 高（Lambda関数が必要） | 低（リゾルバーのみ） |
 | **レスポンス時間** | やや遅い（コールドスタート） | 速い（直接API） |
 | **コスト** | Lambda実行料金 | AppSync料金のみ |

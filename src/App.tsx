@@ -51,7 +51,7 @@ function KnowledgeBaseChatHttp() {
 }
 
 function App() {
-  const [activeTab, setActiveTab] = useState<'lambda' | 'http'>('lambda');
+  const [activeTab, setActiveTab] = useState<'lambda' | 'appsync'>('lambda');
 
   return (
     <Authenticator>
@@ -100,18 +100,18 @@ function App() {
                 </button>
 
                 <button
-                  onClick={() => setActiveTab('http')}
+                  onClick={() => setActiveTab('appsync')}
                   className={`flex-1 px-6 py-4 text-center font-medium transition-colors ${
-                    activeTab === 'http'
+                    activeTab === 'appsync'
                       ? 'text-blue-600 border-b-2 border-blue-600 bg-blue-50'
                       : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
                   }`}
                 >
                   <div className="flex items-center justify-center gap-2">
                     <span>🌐</span>
-                    <span>HTTPデータソース版</span>
+                    <span>AppSync連携版</span>
                   </div>
-                  <p className="text-sm text-gray-500 mt-1">Direct Bedrock API</p>
+                  <p className="text-sm text-gray-500 mt-1">AppSync連携</p>
                 </button>
               </div>
 
@@ -131,11 +131,11 @@ function App() {
                   </div>
                 )}
                 
-                {activeTab === 'http' && (
+                {activeTab === 'appsync' && (
                   <div>
                     <div className="mb-6 text-center">
                       <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                        HTTPデータソース版 - Knowledge Base Chat
+                        AppSync連携版 - Knowledge Base Chat
                       </h2>
                       <p className="text-gray-600">
                         AppSyncのHTTPデータソースを使用して直接Bedrock APIに接続します。
