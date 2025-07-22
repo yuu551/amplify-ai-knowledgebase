@@ -1,4 +1,4 @@
-# 🤖 Amplify AI Knowledge Base
+# Amplify AI Knowledge Base
 
 AWS AmplifyのAI Kitを使用したKnowledge Base統合アプリケーションです。2つの異なる実装方式を比較できます。
 
@@ -8,7 +8,6 @@ AWS AmplifyのAI Kitを使用したKnowledge Base統合アプリケーション�
 - **AppSync連携版**: AppSyncのHTTPデータソースを使用して直接Bedrock APIに接続
 - **AIConversation**: AmplifyのAI KitのデフォルトUIコンポーネントを使用
 - **認証**: Cognito User Poolsによるユーザー認証
-- **リアルタイム**: GraphQLによるリアルタイム通信
 
 ## 🏗️ アーキテクチャ
 
@@ -100,16 +99,6 @@ amplify-ai-knowledgebase/
    - **Lambda関数版**: 従来のサーバーレス関数アプローチ
    - **AppSync連携版**: 直接API統合アプローチ
 3. 質問を入力してKnowledge Baseから回答を取得
-
-## 📊 2つの実装方式の比較
-
-| 項目 | Lambda関数版 | AppSync連携版 |
-|------|-------------|---------------|
-| **実装複雑度** | 高（Lambda関数が必要） | 低（リゾルバーのみ） |
-| **レスポンス時間** | やや遅い（コールドスタート） | 速い（直接API） |
-| **コスト** | Lambda実行料金 | AppSync料金のみ |
-| **デバッグ** | CloudWatch Logs | AppSync Logs |
-| **カスタマイズ性** | 高（任意の処理可能） | 中（リゾルバー内のみ） |
 
 ## 🚀 デプロイ
 
