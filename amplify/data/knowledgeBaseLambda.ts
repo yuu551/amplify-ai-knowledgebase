@@ -32,7 +32,7 @@ export const handler: Schema["queryKnowledgeBase"]["functionHandler"] = async (e
       retrieveAndGenerateConfiguration: {
         type: 'KNOWLEDGE_BASE',
         knowledgeBaseConfiguration: {
-          knowledgeBaseId: 'EQ7FTLNFVM',
+          knowledgeBaseId: process.env.KNOWLEDGE_BASE_ID || 'YOUR_KNOWLEDGE_BASE_ID',
           modelArn: 'arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0'
         }
       }

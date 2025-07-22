@@ -19,7 +19,7 @@ backend.knowledgeBaseLambda.resources.lambda.addToRolePolicy(
       'bedrock:InvokeModel'
     ],
     resources: [
-      'arn:aws:bedrock:us-east-1:*:knowledge-base/EQ7FTLNFVM',
+      `arn:aws:bedrock:us-east-1:*:knowledge-base/${process.env.KNOWLEDGE_BASE_ID || 'YOUR_KNOWLEDGE_BASE_ID'}`,
       'arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0'
     ]
   })
@@ -47,7 +47,7 @@ KnowledgeBaseDataSource.grantPrincipal.addToPrincipalPolicy(
       "bedrock:Retrieve",
     ],
     resources: [
-      "arn:aws:bedrock:us-east-1:*:knowledge-base/EQ7FTLNFVM",
+      `arn:aws:bedrock:us-east-1:*:knowledge-base/${process.env.KNOWLEDGE_BASE_ID || 'YOUR_KNOWLEDGE_BASE_ID'}`,
     ],
   })
 );

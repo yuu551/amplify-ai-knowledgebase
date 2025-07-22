@@ -112,12 +112,6 @@ npm run sandbox
 npm run deploy
 ```
 
-## 🛡️ セキュリティ
-
-- Cognito User Poolsによる認証
-- IAM権限による適切なリソースアクセス制御
-- オーナーベースのデータアクセス制御
-
 ## 📝 ライセンス
 
 MIT License
